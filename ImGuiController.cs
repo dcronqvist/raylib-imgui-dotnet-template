@@ -51,7 +51,7 @@ public class ImGuiController : IDisposable
         IntPtr data = new IntPtr(pixels);
         Image image = new Image
         {
-            data = data,
+            data = (void*)data,
             width = width,
             height = height,
             mipmaps = 1,
@@ -244,7 +244,7 @@ public class ImGuiController : IDisposable
             Rlgl.rlDrawRenderBatchActive();
         }
 
-        Rlgl.rlBegin(Rlgl.RL_TRIANGLES);
+        Rlgl.rlBegin(0x0004); // RL_TRIANGLES
         Rlgl.rlSetTexture((uint)textureId);
 
         for (int i = 0; i <= (count - 3); i += 3)
